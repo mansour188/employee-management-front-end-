@@ -4,33 +4,35 @@ trigger:
 pool:
   name: Myagent
 
+stages:
+- stage: Build
+  displayName: 'Build Stage'
+  jobs:
+    - job: Build
+      displayName: 'Build Application'
+      steps:
+        - task: NodeTool@0
+          inputs:
+            versionSpec: '16.x'
+          displayName: 'Install Node.js'
 
-jobs:
-      - job: Build
-        displayName: 'Build Application'
-        steps:
-          - task: NodeTool@0
-            inputs:
-              versionSpec: '16.x'
-            displayName: 'Install Node.js'
+        - script: npm install
+          displayName: 'Install Dependencies'
 
-          - script: npm install
-            displayName: 'Install Dependencies'
+        - script: npm run build -- --prod
+          displayName: 'Build Angular App'
 
-          - script: npm run build -- --prod
-            displayName: 'Build Angular App'
+        - task: PublishArtifact@1
+          inputs:
+            artifactName: 'angular-app'
+            targetPath: 'dist/employee_management'
+          displayName: 'Publish Artifacts'
 
-          - task: Publish  Artifact  # to make the artifact available for other stages
-            inputs:
-              artifactName: 'angular-app'
-              targetPath: 'dist/employee_management'
-            displayName: 'Publish Artifacts'
-
-  - stage: Test
-    displayName: 'Test Stage'
-    dependsOn: Build
-    jobs:
-      - job: Test
-        displayName: 'Run Tests'
-        steps:
-          # Add steps to run tests for the Angular app
+- stage: Test
+  displayName: 'Test Stage'
+  dependsOn: Build
+  jobs:
+    - job: Test
+      displayName: 'Run Tests'
+      steps:
+       
