@@ -2,7 +2,9 @@ trigger:
 - master
 
 pool:
-  vmImagex: ubuntu-latest
+  name: Myagent
+
+
 
 steps:
 - script: echo Hello, world!
