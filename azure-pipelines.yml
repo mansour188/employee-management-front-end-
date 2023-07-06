@@ -5,9 +5,9 @@ pool:
   name: Myagent
 
 
-   jobs:
+jobs:
       - job: Build
-        displayName: 'Build Angular App'
+        displayName: 'Build Application'
         steps:
           - task: NodeTool@0
             inputs:
