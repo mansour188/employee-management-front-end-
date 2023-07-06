@@ -38,5 +38,29 @@ stages:
         - script: npm install
           displayName: 'Install Dependencies'
 
-        - script: ng test
+        - script: ng test --watch=false --browsers=ChromeHeadlessCIs
           displayName: 'stage test'     
+
+
+#- stage: deploy 
+#    displayName: 'deploy Stage'
+#    dependsOn: Test    #publish only when test succeed
+#    jobs:
+#      - job: Publish
+#        displayName: 'Publish Artifact to Azure Artifacts'
+#        steps:
+#          - task: UniversalPackages@0 //task used to publish artifact 
+#            displayName: 'Publish Artifact'
+#            inputs:
+#              command: 'publish'
+#              publishDirectory: '$(Build.ArtifactStagingDirectory)'
+#              vstsFeedPublish: nameof artifact
+#              vstsFeedPackagePublish: 
+
+#          - task: AzureWebApp@1
+#          displayName: 'Deploy to Azure App Service'
+#          inputs:
+#            azureSubscription: '<Your_Azure_Subscription>'
+#            appName: '<Your_App_Service_Name>'
+#            package: '$(Build.ArtifactStagingDirectory)/<Your_Package_Name>.zip'
+#            deployType: 'zipDeploy'
