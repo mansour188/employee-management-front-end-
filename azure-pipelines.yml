@@ -20,7 +20,7 @@ stages:
           displayName: 'Install Dependencies'
 
         - script: npm run build -- --prod
-          displayName: 'Build Angular App'
+          displayName: 'Build stage'
 
         - task: PublishArtifact@1
           inputs:
@@ -35,4 +35,8 @@ stages:
     - job: Test
       displayName: 'Run Tests'
       steps:
-       
+        - script: npm install
+          displayName: 'Install Dependencies'
+
+        - script: ng test
+          displayName: 'stage test'     
