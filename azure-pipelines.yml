@@ -42,7 +42,7 @@ stages:
         - script: npm install
           displayName: 'Install Dependencies'
 
-        - script: ng test --watch=false --browsers=ChromeHeadlessCI
+        - script: ng test --watch=false --browsers=ChromeHeadless
           displayName: 'stage test'   
 
 
