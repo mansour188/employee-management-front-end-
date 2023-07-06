@@ -22,7 +22,7 @@ stages:
         - script: npm run build -- --prod
           displayName: 'Build stage'
 
-        - task: PublishArtifact@1
+        - task: PublishPipelineArtifact@1
           inputs:
             artifactName: 'angular-app'
             targetPath: 'dist/employee_management'
