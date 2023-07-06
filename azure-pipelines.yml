@@ -41,7 +41,8 @@ stages:
             versionSpec: '16.x'
         - script: npm install
           displayName: 'Install Dependencies'
-        - script: choco install firefox -y
+        - script: |
+              choco install -y firefox
           displayName: 'Install firefox to run test'
 
 
