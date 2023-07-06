@@ -54,7 +54,7 @@ stages:
           displayName: 'Install firefox to run test'
 
 
-        - script: ng test --watch=false --browsers=ChromeHeadless
+        - script: ng test --watch=false --browsers=FirefoxHeadless
           displayName: 'stage test'   
 
 
