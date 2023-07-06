@@ -5,12 +5,32 @@ pool:
   name: Myagent
 
 
+   jobs:
+      - job: Build
+        displayName: 'Build Angular App'
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '16.x'
+            displayName: 'Install Node.js'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+          - script: npm install
+            displayName: 'Install Dependencies'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+          - script: npm run build -- --prod
+            displayName: 'Build Angular App'
+
+          - task: Publish  Artifact  # to make the artifact available for other stages
+            inputs:
+              artifactName: 'angular-app'
+              targetPath: 'dist/employee_management'
+            displayName: 'Publish Artifacts'
+
+  - stage: Test
+    displayName: 'Test Stage'
+    dependsOn: Build
+    jobs:
+      - job: Test
+        displayName: 'Run Tests'
+        steps:
+          # Add steps to run tests for the Angular app
