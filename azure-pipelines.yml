@@ -19,7 +19,7 @@ stages:
         - script: npm install
           displayName: 'Install Dependencies'
 
-        - script: npm run build -- --prod
+        - script: npm run build
           displayName: 'Build stage'
 
         - task: PublishPipelineArtifact@1
