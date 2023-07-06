@@ -41,8 +41,16 @@ stages:
             versionSpec: '16.x'
         - script: npm install
           displayName: 'Install Dependencies'
-        - script: |
-              choco install -y firefox
+        - task: PowerShell@2
+           inputs:
+             targetType: 'inline'
+             script: |
+               $url = 'https://download.mozilla.org/?product=firefox-latest&os=win64&lang=en-US'
+               $installerPath = '$(Agent.TempDirectory)\firefox-installer.exe'
+               Invoke-WebRequest -Uri $url -OutFile $installerPath
+               Start-Process -Wait -FilePath $installerPath -ArgumentList "/S"
+      
+        
           displayName: 'Install firefox to run test'
 
 
