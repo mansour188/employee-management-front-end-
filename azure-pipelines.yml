@@ -19,7 +19,7 @@ stages:
         - script: npm install
           displayName: 'Install Dependencies'
 
-        - script: npm run build
+        - script: ng build
           displayName: 'Build stage'
 
         - task: PublishPipelineArtifact@1
@@ -33,13 +33,18 @@ stages:
   dependsOn: Build
   jobs:
     - job: Test
+
       displayName: 'Run Tests'
       steps:
+        - task: NodeTool@0
+          inputs:
+            versionSpec: '16.x'
         - script: npm install
           displayName: 'Install Dependencies'
 
-        - script: ng test --watch=false --browsers=ChromeHeadlessCIs
-          displayName: 'stage test'     
+        - script: ng test --watch=false --browsers=ChromeHeadlessCI
+          displayName: 'stage test'   
+
 
 
 #- stage: deploy 
