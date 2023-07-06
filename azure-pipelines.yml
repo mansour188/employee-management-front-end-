@@ -41,6 +41,9 @@ stages:
             versionSpec: '16.x'
         - script: npm install
           displayName: 'Install Dependencies'
+        - script: choco install firefox -y
+          displayName: 'Install firefox to run test'
+
 
         - script: ng test --watch=false --browsers=ChromeHeadless
           displayName: 'stage test'   
