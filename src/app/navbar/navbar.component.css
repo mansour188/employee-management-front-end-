@@ -1,0 +1,17 @@
+@media screen and (min-width:777px){
+    .nav-link {
+      padding:px 0;
+      min-width:120px;
+    }
+    .navbar {
+      padding: 0;
+      position: fixed;
+     left: 0%;
+     right: 0%;
+     z-index:1;
+
+  
+      
+     
+    }
+  }

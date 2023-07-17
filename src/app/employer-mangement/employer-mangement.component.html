@@ -1,0 +1,68 @@
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+<br>
+
+<div class="body">
+    <div class="container ">
+    
+<div class="table-responsive">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-5">
+                    <h2>User <b>Management</b></h2>
+                </div>
+                
+                <div class="col-sm-7">
+                    
+                    <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
+                   	
+                    					
+                </div>
+                
+            </div>
+        </div>
+        <div class="input-group search">
+            <input type="search" class="form-control rounded" placeholder="Search By firstname" aria-label="Search" aria-describedby="search-addon" />
+            <button type="button" class="btn btn-outline-primary">search</button>
+          </div>
+        <table class="table table-striped table-hover">
+            <thead>
+                
+                <tr>
+                    <th>image</th>
+                    <th>firstname</th>
+                    <th>lastName</th>						
+                    <th>email </th>
+                    <th>birthDay</th>
+                    <th>project</th>
+                    <th>department</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employee of employees">
+                    <td><a href="#"><img src="../../assets/c.jpg" class="avatar" alt="Avatar" width="50 px " height="50 px"/> </a></td>
+                    <td>{{employee.firstname}} </td>
+            
+                    <td>{{employee.firstname}}</td>                        
+                    <td>{{employee.lastName}}</td>
+                    <td>{{employee.email}}</td>
+                    <td ><ng-container *ngIf(employee.project)>{{employee.project.title}}</ng-container></td>
+                    <td > <ng-container *ngIf(employee.department)>{{employee.department.depName}}</ng-container></td>
+
+                    <td>
+                        <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                    </td>
+                </tr>
+               
+            </tbody>
+        </table>
+       
+    </div>
+</div>
+</div>
+</div>
