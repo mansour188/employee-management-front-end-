@@ -2,13 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
-import { SginInComponent } from './sgin-in/sgin-in.component';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { EmployerMangementComponent } from './employer-mangement/employer-mangement.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { AppComponent } from './app.component';
+import { EmployerMangementComponent } from './employers/employer-mangement.component';
+import { FooterComponent } from './footer/footer.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RegisterEmployeeComponent } from './register-employee/register-employee.component';
+import { SginInComponent } from './sgin-in/sgin-in.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
+
 
 @NgModule({
   declarations: [
@@ -16,15 +21,33 @@ import { EmployerMangementComponent } from './employer-mangement/employer-mangem
     NavbarComponent,
     FooterComponent,
     SginInComponent,
-    EmployerMangementComponent
-  ],
+    EmployerMangementComponent,
+    RegisterEmployeeComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot(),
+    ReactiveFormsModule,
+    BrowserAnimationsModule
+    
+    
   ],
-  providers: [],
+  providers: [
+    // 
+    // required animations providers
+    // Toastr providers
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
+function provideAnimations(): import("@angular/core").Provider | import("@angular/core").EnvironmentProviders {
+  throw new Error('Function not implemented.');
+}
+
+function provideToastr(): import("@angular/core").Provider | import("@angular/core").EnvironmentProviders {
+  throw new Error('Function not implemented.');
+}
+
