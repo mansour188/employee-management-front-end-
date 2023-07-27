@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../services/employee-service.service';
-import { EmployeeModel } from '../model/employee/employee.model';
+import { EmployeeModel } from '../model/Employee.model';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-employer-mangement',
@@ -13,7 +14,7 @@ export class EmployerMangementComponent implements OnInit{
   public employees!: EmployeeModel[];
   public searchVal:any;
   public filteredEmployees!: EmployeeModel[]; 
-  constructor(private employeeService:EmployeeService,private toastr: ToastrService   ){}
+  constructor(private employeeService:EmployeeService,private toastr: ToastrService ,private router: Router, private route: ActivatedRoute  ){}
   ngOnInit(): void {
     this.loadEmployees()
 
@@ -69,6 +70,10 @@ export class EmployerMangementComponent implements OnInit{
       }
     
      
+    }
+
+    updateEmployee(employee: EmployeeModel) {
+      this.router.navigate(['/updateEmployee', employee.id], { state: { employee: employee } });
     }
 
 

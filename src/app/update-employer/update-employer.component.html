@@ -63,15 +63,17 @@
                     </div>
     
                     <div class="form-outline mb-4">
-                      <input type="date" name="birthDay"   id="form3Example8" [(ngModel)]="employee.birthDay"   class="form-control form-control-lg"  required/>
-                      <label class="form-label"  for="form3Example8">birthDay</label>
+                      <input type="date" name="birthDay"    [(ngModel)]="employee.birthDay"   class="form-control form-control-lg"  required/>
+                      <label class="form-label"  >birthDay</label>
                       <div *ngIf="form.controls['birthDay']?.invalid && (form.controls['birthDay']?.dirty || form.controls['birthDay']?.touched)">
                         <div style="color: red;" *ngIf="form.controls['birthDay']?.errors?.['required']">birthDay is required.</div>
                       </div>
                     </div>
                     <div class="form-outline mb-4">
-                      <input type="file"   #fileInput name="file" id="form3Example8" class="form-control form-control-lg" required/>
-                      <label class="form-label" name="image"  for="form3Example8">Image</label>
+                        <img [src]="employee.imageData" class="avatar" alt="Avatar" width="100 px " height="100 px"/>
+                      <input type="file"   #fileInput name="file" class="form-control form-control-lg" required/>
+                      
+                      <label class="form-label" name="image"  >Image</label>
 
                     </div>
     
@@ -80,19 +82,21 @@
          
                       <div class="col-md-6 mb-4">
                         
-    
-                        <select   id="form3Example8" class="select"  name="role" [(ngModel)]="employee.role" >
-                          <option value="" selected disabled hidden>Choose Role</option>
 
+                        
+                        
+    
+                        <select   id="form3Example8" class="select"  name="role" [(ngModel)]="employee.role" value="{{employee.role}}">
+                            <option value="" selected disabled hidden>Choose Role</option>
                           
                           
                           
-                          <option selected value="EMPLOYER">EMPLOYER</option>
+                          <option value="EMPLOYER">EMPLOYER</option>
                           <option value="MANAGER">MANAGER</option>
                           
                         </select>
                         <br>
-                        <label for="form3Example8t">ROLE
+                        <label for="">ROLE
                         </label>
                        
                         <div *ngIf="form.controls['role']?.invalid && (form.controls['role']?.dirty || form.controls['role']?.touched)">
@@ -126,3 +130,4 @@
           </div>
           
 </div>
+ 

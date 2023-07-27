@@ -13,12 +13,12 @@
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-5">
-                    <h2>User <b>Management</b></h2>
+                    <h2>Employees <b>Management</b></h2>
                 </div>
                 
                 <div class="col-sm-7">
                     
-                    <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
+                    <a routerLink="/registerEmployee" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
                    	
                     					
                 </div>
@@ -49,15 +49,15 @@
                     <td><a href="#"><img [src]="employee.imageData" class="avatar" alt="Avatar" width="50 px " height="50 px"/> </a></td>
                     <td>{{employee.firstname}} </td>
             
-                    <td>{{employee.firstname}}</td>                        
-                    <td>{{employee.lastName}}</td>
+                    <td>{{employee.lastName}}</td>                        
                     <td>{{employee.email}}</td>
+                    <td>{{employee.birthDay}}</td>
                     <td ><ng-container *ngIf(employee.project)>{{employee.project.title}}</ng-container></td>
                     <td > <ng-container *ngIf(employee.department)>{{employee.department.depName}}</ng-container></td>
 
                     <td>
-                        <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                        <a href="#"(click)="deleteEmpl(employee.id)"  class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                        <a (click)="updateEmployee(employee)" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
+                        <a (click)="deleteEmpl(employee.id)"  class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                     </td>
                 </tr>
                
@@ -68,4 +68,5 @@
 </div>
 </div>
 </div>
+
 <br>

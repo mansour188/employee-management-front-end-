@@ -1,5 +1,5 @@
-import { Department } from "./department.model";
-import { Project } from "./project.model";
+import { Department } from "./Department.model";
+import { Project } from "./Project.model";
 
 export class EmployeeModel{
   

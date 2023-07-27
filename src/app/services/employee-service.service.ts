@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EmployeeModel } from '../model/employee/employee.model';
+import { EmployeeModel } from '../model/Employee.model';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { employeeRegister } from '../model/employee/employeeRegister.model';
+import { employeeRegister } from '../model/employeeRegister.model';
 import { GlobalConfig, ToastrService } from 'ngx-toastr';
 import { NotifierService } from 'angular-notifier';
 
@@ -54,8 +54,9 @@ export class EmployeeService {
   
     this.http.post(`${this.Url}/register_employee`, formData,{headers,responseType: 'text' }).subscribe(
       () => {
-        this.toastr.success('Request processed successfully', 'Toastr fun!');
+        this.toastr.success('Request processed successfully');
         console.log('Request processed successfully');
+        this.router.navigate(["employees"])
       
         
       },
@@ -88,5 +89,56 @@ export class EmployeeService {
     
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.delete(url,{headers})
+  }
+
+
+  UpdateEmpngloyee(file: File, employer: employeeRegister,id:number) {
+    const formData = new FormData();
+    formData.append('file', file);
+    console.log(employer)
+    formData.append('employee',new Blob([JSON.stringify(employer)], { type: 'application/json' }));
+    const token = localStorage.getItem('token');
+    console.log(token)
+
+    
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    
+    
+  
+    this.http.put(`${this.Url}/updateEmployee/${id}`, formData,{headers,responseType: 'text' }).subscribe(
+      () => {
+        this.toastr.success('Request processed successfully');
+        console.log('Request processed successfully');
+        this.router.navigate(["employees"])
+      
+        
+      },
+      (error) => {
+
+        if (error.status==409){
+         
+          this.toastr.error("user not exist ! ")
+
+
+        }
+        this.toastr.error("register failed ! ")
+        
+        console.error('Error:', error);
+        
+       
+             
+      }
+    );
+  }
+
+  getEmployeeById=()=>{
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
+    
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<EmployeeModel>(`${this.Url}/getEmployee/${userId}`,{headers})
+  
+    
   }
 }

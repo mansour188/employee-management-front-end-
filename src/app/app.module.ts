@@ -12,6 +12,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterEmployeeComponent } from './register-employee/register-employee.component';
 import { SginInComponent } from './sgin-in/sgin-in.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { LeaveComponent } from './leave/leave.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { UpdateEmployerComponent } from './update-employer/update-employer.component';
+import { ProfileEmployeeComponent } from './profile-employee/profile-employee.component';
 
 
 
@@ -22,7 +28,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     FooterComponent,
     SginInComponent,
     EmployerMangementComponent,
-    RegisterEmployeeComponent  ],
+    RegisterEmployeeComponent,
+    LeaveComponent,
+    UpdateEmployerComponent,
+    ProfileEmployeeComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,7 +39,13 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     HttpClientModule,
     ToastrModule.forRoot(),
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule
+   
+   
+    
     
     
   ],

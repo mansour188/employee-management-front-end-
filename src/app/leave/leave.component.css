@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+  }
+  
+  .datepicker-container {
+    margin: 10px; /* Optional: Add some spacing between the datepicker containers */
+  }
+  

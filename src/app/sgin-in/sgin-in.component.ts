@@ -19,12 +19,17 @@ export class SginInComponent {
     this.loginService.login(this.email, this.password).subscribe(
       response => {
         const token = response.token;
+        const userId=response.idUser
 
-        console.log(token)
+        console.log(response)
+      
+
+       
         this.toastr.success("login successful!")
 
         
         localStorage.setItem('token', token);
+        localStorage.setItem('userId', userId.toString());
         this.toastr.success("login successful!")
         
 

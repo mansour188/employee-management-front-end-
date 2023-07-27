@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthResponse } from '../model/AuthResponse.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,13 +9,12 @@ export class LoginServiceService {
 
   
   private loginUrl = 'http://localhost:8080/auth/login'; 
-  private tokenKey = 'auth_token';
 
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string) {
     const body = { email, password };
-    return this.http.post<any>(this.loginUrl, body);
+    return this.http.post<AuthResponse>(this.loginUrl, body);
   }
 
   getToken=()=>{const token = localStorage.getItem('token');
