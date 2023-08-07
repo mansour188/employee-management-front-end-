@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginServiceService } from '../services/login-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class SginInComponent {
   email!: string;
   password!: string;
 
-  constructor(private loginService: LoginServiceService,private toastr: ToastrService) {}
+  constructor(private route:Router,private loginService: LoginServiceService,private toastr: ToastrService) {}
 
   login() {
     this.loginService.login(this.email, this.password).subscribe(
@@ -21,16 +22,16 @@ export class SginInComponent {
         const token = response.token;
         const userId=response.idUser
 
-        console.log(response)
+    
       
 
        
-        this.toastr.success("login successful!")
 
         
         localStorage.setItem('token', token);
         localStorage.setItem('userId', userId.toString());
         this.toastr.success("login successful!")
+        this.route.navigate(["profile"])
         
 
       },

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { AppComponent } from './app.component';
@@ -13,11 +13,20 @@ import { RegisterEmployeeComponent } from './register-employee/register-employee
 import { SginInComponent } from './sgin-in/sgin-in.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { LeaveComponent } from './leave/leave.component';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDateSelectionModel, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { UpdateEmployerComponent } from './update-employer/update-employer.component';
 import { ProfileEmployeeComponent } from './profile-employee/profile-employee.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './modal/modal.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { LeaveManagementComponent } from './leave-management/leave-management.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { JwtHelperService , JwtModule } from '@auth0/angular-jwt';
+import { JwtInterceptorService } from './services/jwt-interceptor.service';
 
 
 
@@ -31,7 +40,11 @@ import { ProfileEmployeeComponent } from './profile-employee/profile-employee.co
     RegisterEmployeeComponent,
     LeaveComponent,
     UpdateEmployerComponent,
-    ProfileEmployeeComponent  ],
+    ProfileEmployeeComponent,
+    ModalComponent,
+    TasksComponent,
+    LeaveManagementComponent,
+    AdminProfileComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -42,14 +55,32 @@ import { ProfileEmployeeComponent } from './profile-employee/profile-employee.co
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatInputModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    NgbModule,
+    FullCalendarModule, 
+    MatSidenavModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('token');
+        }
+      }
+    })
    
+  
+                 
    
     
     
     
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true
+    }
+    
     // 
     // required animations providers
     // Toastr providers

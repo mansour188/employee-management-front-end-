@@ -1,4 +1,4 @@
-export class Work{
+export class WorkRequest{
     constructor(
       public title: string,
       public startTime: string,

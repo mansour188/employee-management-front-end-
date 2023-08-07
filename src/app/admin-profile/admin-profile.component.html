@@ -1,0 +1,181 @@
+<div class="container body">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="osahan-account-page-left shadow-sm bg-white h-100">
+                <div class="border-bottom p-4 bg">
+                    <div class="osahan-user text-center">
+                        <div class="osahan-user-media">
+                           
+                                <img src="../../assets/admin.jpg" width="150px" height="150px" class="mb-3 rounded-pill shadow-sm mt-1"  alt="profile image">
+                            
+                            <div class="osahan-user-media-body">
+                                <h5><b>Welcom</b> </h5> <h6>{{employee.firstname}} {{employee.lastName}}  </h6>
+                                
+                                
+                           <p>{{employee.email}}</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <div>
+                <div class="container">
+                  <div class="row">
+                      <div class="col-12">
+                          <div class="button-container">
+                            <div class="wrapper">
+                              <a class="a" routerLink="/registerEmployee"><span>Register Employee</span></a>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="button-container">
+                          <div class="wrapper">
+                            <a class="a" routerLink="/employees"><span>View Employees</span></a>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="button-container">
+                        <div class="wrapper">
+                          <a class="a" routerLink="/leaveMangement"><span>Pending Requests</span></a>
+                        </div>
+                      </div>
+                  </div>
+                  </div>
+              </div>
+                
+
+
+                
+                  <br>
+                 
+            
+                
+                
+                  
+            
+
+  
+               </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="osahan-account-page-right shadow-sm bg-white p-4 min-vh-100">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane  fade  active show" id="offers" role="tabpanel" aria-labelledby="offers-tab">
+                        <h4 class="font-weight-bold mt-0 mb-4">latest Updates</h4>
+                        <br>
+              
+
+                        <div class="row">
+      <div class="col-xl-6 col-sm-6 col-12"> 
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body d-flex">
+              
+              <div class="media d-flex">
+                <div class="align-self-center">
+                  <i class="icon-speech warning font-large-2 float-left"></i>
+                </div>
+                <div class="media-body text-right">
+                  <h3>{{statestic.nbrEmloyees}}</h3>
+                  <span>Number of Employees</span>
+                </div>
+              </div>
+              <div class="left-content ml-auto">
+                <img src="../../assets/statistiques1.png" class="round-image">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body d-flex">
+              
+              <div class="media d-flex">
+                <div class="align-self-center">
+                  <i class="icon-speech warning font-large-2 float-left"></i>
+                </div>
+                <div class="media-body text-right">
+                  <h3>{{statestic.nbrPendingRequest}}</h3>
+                  <span>All Tasks</span>
+                </div>
+              </div>
+              <div class="left-content ml-auto">
+                <img src="../../assets/statistiques2.png" class="round-image">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+                        </div>
+
+
+                        <br>
+                        <br>
+
+
+                        <div class="row">
+
+
+                            <div class="col-xl-6 col-sm-6 col-12">
+                              <div class="card">
+                                <div class="card-content">
+                                  <div class="card-body d-flex">
+                                    
+                                    <div class="media d-flex">
+                                      <div class="align-self-center">
+                                        <i class="icon-speech warning font-large-2 float-left"></i>
+                                      </div>
+                                      <div class="media-body text-right">
+                                        <h3>{{statestic.nbrPendingRequest}}</h3>
+                                        <span>Number Pending Request</span>
+                                      </div>
+                                    </div>
+                                    <div class="left-content ml-auto">
+                                      <img src="../../assets/statistique3.png" class="round-image">
+                                      
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              </div>
+                              <div class="col-xl-6 col-sm-6 col-12">
+                                <div class="card">
+                                  <div class="card-content">
+                                    <div class="card-body d-flex">
+                                      
+                                      <div class="media d-flex">
+                                        <div class="align-self-center">
+                                          <i class="icon-speech warning font-large-2 float-left"></i>
+                                        </div>
+                                        <div class="media-body text-right">
+                                          <h3>{{statestic.nbrWorkToday}}</h3>
+                                          <span>Number of daily Tasks</span>
+                                        </div>
+                                      </div>
+                                      <div class="left-content ml-auto">
+                                        <img src="../../assets/rapport-statistique.png" class="round-image">
+                                        
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+
+                     
+                    
+                
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

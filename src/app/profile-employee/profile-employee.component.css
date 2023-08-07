@@ -38,3 +38,55 @@ ul.center-items {
     /* You can also set a fixed height if needed */
     /* height: 200px; */
   }
+
+.icon-button {
+    display: inline-flex;
+    align-items: center; /* Vertically center the icon */
+    justify-content: center; /* Horizontally center the icon */
+    border: none; /* Remove default button border */
+    background-color: transparent; /* Make the button background transparent */
+    cursor: pointer; /* Add a pointer cursor on hover */
+    padding: 0; /* Remove any default padding (optional) */
+  }
+  
+  /* Style the icon */
+  .icon-button i {
+    font-size: 24px; /* Set the desired icon size */
+    color: #000; /* Set the icon color */
+  }
+  .icon-button .icon1 {
+    font-size: 24px; 
+    color: #5205ed; 
+  }
+  
+  /* Style the icon with the class "icon2" */
+  .icon-button .icon2 {
+    font-size: 24px; 
+    color: #FF0000; 
+  }
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-container button {
+    width: 100%;
+    margin-bottom: 10px;
+    color: #000; /* Optional: Add some spacing between the buttons */
+}
+.button-container button:hover {
+  background: #16222A;
+  background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
+  background: linear-gradient(59deg, #3A6073, #16222A);
+  color: #fff;
+  color: white; /* Optional: Change text color to white when hovered */
+}
+.btntask{
+  background: #638399;
+  background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
+  background: linear-gradient(59deg, #00FEFF, #16222A);
+  color: #fff;
+  font-size: 18px; /* Adjust the font size to make the button larger */
+ 
+}

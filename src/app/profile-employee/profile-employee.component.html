@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="osahan-account-page-left shadow-sm bg-white h-100">
-                <div class="border-bottom p-4">
+                <div class="border-bottom p-4 bg">
                     <div class="osahan-user text-center">
                         <div class="osahan-user-media">
                            
@@ -20,41 +20,41 @@
                     </div>
                 </div>
                <div>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <!-----save work   by model-->
+                <div class="modal fade" id="exampleModal" #myModal tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" #model>
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Task</h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="container">
-                                <form>
+                                <form  #form="ngForm" (ngSubmit)="saveWork(form)">
                                     <!-- Title input -->
-                                    <div class="form-outline mb-4">
-                                      <input type="text" name="title" id="form1Example1" class="form-control" />
+                                    <div class="form-outline mb-4" >
+                                      <input type="text" name="title" id="form1Example1" class="form-control" ngModel required/>
                                       <label class="form-label" for="form1Example1">Title of Task</label>
                                     </div>
                                   
-                                    <!-- Password input -->
                                     <div class="form-outline mb-4">
-                                      <input type="datetime-local" name="startTime" id="form1Example2" class="form-control" />
+                                      <input type="datetime-local" name="startTime" id="form1Example2" class="form-control" ngModel required/>
                                       <label class="form-label" for="form1Example2">Start Time</label>
                                     </div>
                                     <div class="form-outline mb-4">
-                                        <input type="number" id="form1Example2" class="form-control" />
-                                        <label class="form-label" for="form1Example2">Duration (in hours):</label>
+                                        <input type="number" name="duration" id="form1Example3" class="form-control" ngModel required />
+                                        <label class="form-label" for="form1Example3">Duration (in hours):</label>
                                       </div>
                                       <div class="form-outline mb-4">
-                                        <textarea type="number" id="form1Example2" class="form-control" ></textarea>
-                                        <label class="form-label" for="form1Example2">Description:</label>
+                                        <textarea type="text" name="description" id="form1Example4" class="form-control" ngModel required></textarea>
+                                        <label class="form-label" for="form1Example4">Description:</label>
                                       </div>
                                   
                                    
                                     
                                   
                                     <!-- Submit button -->
-                                    <button type="submit" class="btn btn-primary btn-block">submit the task</button>
+                                    <button type="submit" class="btn btntask primary btn-block">submit the task</button>
                                   </form>
                             </div>
                           </div>
@@ -62,11 +62,26 @@
                       </div>
                     </div>
                   </div>
-                  <br>
-                  <div class="text-center">
-                    <button type="button" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Submit Task</button>
 
+
+
+                
+                  <br>
+                 
+                <div class="container">
+                  <div class="row">
+                      <div class="col-12">
+                          <div class="button-container">
+                              <button type="button" class="btn btn-outline-success btn-lg"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Submit Task</button>
+                              <button routerLink="/leave" type="button" class="btn btn-outline-success btn-lg">Leave Request</button>
+                          </div>
+                      </div>
                   </div>
+              </div>
+                
+                
+                
+                  
                   <br>
                   <br>
 
@@ -76,29 +91,74 @@
             </div>
         </div>
         <div class="col-md-9">
-            <div class="osahan-account-page-right shadow-sm bg-white p-4 h-100">
+            <div class="osahan-account-page-right shadow-sm bg-white p-4 min-vh-100">
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane  fade  active show" id="offers" role="tabpanel" aria-labelledby="offers-tab">
-                        <h4 class="font-weight-bold mt-0 mb-4">Last Tasks</h4>
+                        <h4 class="font-weight-bold mt-0 mb-4">latest Tasks</h4>
                       
+                  <!---        show works-->
 
-
-                        <div class="row mb-4 pb-2">
-                            <div class="col-md-6">
-                                <div class="card offer-card shadow-sm">
-                                    <div class="card-body">
-                                        <h5 class="card-title"> OSAHANEAT50</h5>
-                                        <h6 class="card-subtitle mb-2 text-block">Get 50% OFF on your first Food Line order</h6>
-                                        <p class="card-text">Use code OSAHANEAT50 &amp; get 50% off on your first osahan order on Website and Mobile site. Maximum discount: $200</p>
-                                        <a href="#" class="card-link">COPY CODE</a>
-                                        <a href="#" class="card-link">KNOW MORE</a>
-                                    </div>
-                                </div>
+                     
+                     <div *ngFor="let work of works; let i = index">
+                      <!-- Check if the index is even to create pairs of cards -->
+                      <div *ngIf="i % 2 === 0" class="row mb-4 pb-2">
+                        <div class="col-md-6">
+                          <div class="card offer-card shadow-sm">
+                             <div class=" d-flex justify-content-end">
+                              
+                              <button  (click)="updateWork(works[i])" class="icon-button ">
+                                <i class="material-icons icon1">&#xE8B8;</i>
+                              </button>
+                              <button (click)="deleteTask(works[i].workId)" class="icon-button ">
+                                <i class="material-icons icon2">&#xE5C9;</i>
+                              </button>
+                            
+                              </div>
+                              
+                            <div class="card-body">
+                              <h5 class="card-title"><b>task name</b>: {{ works[i].title }}</h5>
+                              <h6 class="card-subtitle mb-2 text-block"><b>start time</b>: {{ works[i].startTime | date: 'short' }}</h6>
+                              <p class="card-text"><b>description</b> : {{ works[i].description }}</p>
+                              <h6><b>duration</b>: {{ works[i].duration }} h</h6>
                             </div>
-                        
-                       
+                          </div>
+                        </div>
+                        <!-- Check if there is a second card available in the pair -->
+                        <div *ngIf="i + 1 < works.length" class="col-md-6">
+                          <div class="card offer-card shadow-sm">
+                            <div class=" d-flex justify-content-end">
+                              
+                              <button (click)="updateWork(works[i+1])" class="icon-button ">
+                                <i class="material-icons icon1">&#xE8B8;</i>
+                              </button>
+                              <button (click)="deleteTask(works[i + 1].workId)" class="icon-button">
+                                <i class="material-icons icon2">&#xE5C9;</i>
+                              </button>
+                            
+                              </div>
+                            <div class="card-body">
+                            
+                              <h5 class="card-title"><b>task name</b>: {{ works[i + 1].title }}</h5>
+                              <h6 class="card-subtitle mb-2 text-block"><b>start time</b>: {{ works[i + 1].startTime | date: 'short' }}</h6>
+                              <p class="card-text"><b>description</b>: {{ works[i + 1].description }}</p>
+                              <h6><b>duration</b>: {{ works[i + 1].duration }} h</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+                    <br>
+                    <br>
+                    <br>
+                    <ng-container *ngIf="works.length==0">
+                      <h6 style="text-align: center;">No Tasks</h6>
+                      
+                     </ng-container>
+
+                        
                 </div>
+                <p><a routerLink="/tasks" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">show All Tasks</a></p>
+
             </div>
         </div>
     </div>

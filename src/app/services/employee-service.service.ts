@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { EmployeeModel } from '../model/Employee.model';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { employeeRegister } from '../model/employeeRegister.model';
+import { employeeRegister } from '../model/EmployeeRegister.model';
 import { GlobalConfig, ToastrService } from 'ngx-toastr';
-import { NotifierService } from 'angular-notifier';
+
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class EmployeeService {
 
     if (token) {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      return this.http.get<EmployeeModel[]>(`${this.Url}/allEmployees`,{headers})
+      return this.http.get<EmployeeModel[]>(`${this.Url}/allEmployees`)
 
     }
     this.router.navigate(['/login']); // Redirect to the login page
