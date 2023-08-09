@@ -1,34 +1,45 @@
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <nav  class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand d-md-none d-xs-block py-3" href="#">
-        <!--<img src="/static_files/images/logos/beer_white.png" height="40" alt="Company Logo"> -->
-      </a>
+      <img src="../../assets/NST-1-382w.png" height="70px"  alt="Company Logo"> 
+
+      
+      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
   
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav mx-auto">
-          <li class="nav-item">
-            <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
+          <li *ngIf="admin" class="nav-item">
+            <a class="nav-link mx-2 active" aria-current="page" routerLink="adminProfile">profile</a>
+          </li >
+          <li *ngIf="employee" class="nav-item">
+            <a class="nav-link mx-2 active" aria-current="page" routerLink="profile">profile</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link mx-2" href="#">Locations</a>
+          <li *ngIf="employee" class="nav-item">
+            <a class="nav-link mx-2" routerLink="leave">leave Request</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link mx-2" href="#">Menus</a>
+          <li *ngIf="employee" class="nav-item">
+            <a class="nav-link mx-2" routerLink="tasks">tasks</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link mx-2" href="#">Catering</a>
+          <li *ngIf="admin"  class="nav-item">
+            <a class="nav-link mx-2" routerLink="leaveMangement">Pending Request</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link mx-2" href="#">Reserve</a>
+          <li *ngIf="admin" class="nav-item">
+            <a class="nav-link mx-2" routerLink="registerEmployee">register Employee</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link mx-2 btn rounded-0 btn-danger" href="#">Order Online</a>
+          <li *ngIf="admin" class="nav-item">
+            <a class="nav-link mx-2" routerLink="employees">Employees</a>
+          </li>
+ 
+        
+          <li *ngIf="isLoggedIn"  class="nav-item">
+            <a  class="nav-link mx-2 btn rounded-0 btn-danger " (click)="logout()">log out</a>
           </li>
         </ul>
       </div>
     </div>
+    
+
   </nav>
  

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,9 +25,12 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { LeaveManagementComponent } from './leave-management/leave-management.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
-import { JwtHelperService , JwtModule } from '@auth0/angular-jwt';
+import { JwtModule } from '@auth0/angular-jwt';
 import { JwtInterceptorService } from './services/jwt-interceptor.service';
-
+import { AuthService } from './services/auth.service';
+export function initializeAuthService(authService: AuthService) {
+  return () => authService.initAuthState();
+}
 
 
 @NgModule({
@@ -78,6 +81,13 @@ import { JwtInterceptorService } from './services/jwt-interceptor.service';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptorService,
+      multi: true
+    },
+    AuthService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeAuthService,
+      deps: [AuthService],
       multi: true
     }
     

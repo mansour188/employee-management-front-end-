@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { LoginServiceService } from '../services/login-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @Component({
@@ -14,13 +15,14 @@ export class SginInComponent {
   email!: string;
   password!: string;
 
-  constructor(private route:Router,private loginService: LoginServiceService,private toastr: ToastrService) {}
+  constructor(private jwtHelper:JwtHelperService,private route:Router,private loginService: AuthService,private toastr: ToastrService) {}
 
   login() {
     this.loginService.login(this.email, this.password).subscribe(
-      response => {
+      (response) => {
         const token = response.token;
         const userId=response.idUser
+        this.loginService.updateAuthState(true,this.jwtHelper.decodeToken(token).role , this.jwtHelper.decodeToken(token).sub);
 
     
       
@@ -30,6 +32,7 @@ export class SginInComponent {
         
         localStorage.setItem('token', token);
         localStorage.setItem('userId', userId.toString());
+
         this.toastr.success("login successful!")
         this.route.navigate(["profile"])
         
