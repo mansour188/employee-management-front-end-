@@ -2,7 +2,7 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { AppComponent } from './app.component';
@@ -25,7 +25,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { LeaveManagementComponent } from './leave-management/leave-management.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
-import { JwtModule } from '@auth0/angular-jwt';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { JwtInterceptorService } from './services/jwt-interceptor.service';
 import { AuthService } from './services/auth.service';
 export function initializeAuthService(authService: AuthService) {
@@ -61,6 +61,7 @@ export function initializeAuthService(authService: AuthService) {
     MatNativeDateModule,
     NgbModule,
     FullCalendarModule, 
+    HttpClientModule ,
     MatSidenavModule,
     JwtModule.forRoot({
       config: {
@@ -78,6 +79,8 @@ export function initializeAuthService(authService: AuthService) {
     
   ],
   providers: [
+   
+    JwtHelperService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptorService,
